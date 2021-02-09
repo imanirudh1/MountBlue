@@ -5,6 +5,6 @@ const problem6 = (inventory) => {
       cars.push(inventory[i])
     }
   }
-  return JSON.stringify(cars)
+  return cars
 }
 module.exports = problem6
