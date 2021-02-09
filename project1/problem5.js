@@ -8,8 +8,7 @@ const problem5 = (carYears) => {
       break
     }
   }
-  console.log(carYears.slice(0, count))
-  return count
+  return carYears.slice(0, count)
 }
 
 module.exports = problem5
