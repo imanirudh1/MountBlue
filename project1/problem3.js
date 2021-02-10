@@ -1,4 +1,11 @@
+/**
+ * Prints the car model in sorted order
+ *
+ * @param {Object[]} inventory - The details of the cars
+ */
+
 const problem3 = (inventory) => {
+  if (inventory.length === 0 || !Array.isArray(inventory)) return []
   inventory.sort((a, b) => {
     let car1 = a.car_model.toLowerCase()
     let car2 = b.car_model.toLowerCase()
@@ -11,8 +18,12 @@ const problem3 = (inventory) => {
     }
     return 0
   })
-  for (let i = 0; i < inventory.length; i++) {
-    console.log(inventory[i].car_model)
-  }
+  return inventory
 }
+
+/**
+ * A module to list car model in sorted order!
+ * @module ./problem3
+ */
+
 module.exports = problem3
