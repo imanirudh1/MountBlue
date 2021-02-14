@@ -8,7 +8,7 @@ var MyObject = {
 
   keys(obj) {
     const res = []
-    if (typeof obj === 'object') {
+    if (typeof obj === 'object' || typeof obj === 'string') {
       for (let key in obj) {
         res.push(key)
       }
@@ -25,7 +25,7 @@ var MyObject = {
 
   values(obj) {
     const res = []
-    if (typeof obj === 'object') {
+    if (typeof obj === 'object' || typeof obj === 'string') {
       for (let key in obj) {
         if (typeof obj[key] != 'function') res.push(obj[key])
       }
@@ -41,12 +41,13 @@ var MyObject = {
    */
 
   mapObject(obj, cb) {
+    const res = {}
     if (typeof obj === 'object') {
       for (let key in obj) {
-        obj[key] = cb(obj[key], key)
+        res[key] = cb(obj[key], key)
       }
-      return obj
     }
+    return res
   },
 
   /**
@@ -57,13 +58,13 @@ var MyObject = {
    */
 
   pairs(obj) {
+    const res = []
     if (typeof obj === 'object') {
-      const res = []
       for (let key in obj) {
         res.push([key, obj[key]])
       }
-      return res
     }
+    return res
   },
 
   /**
@@ -74,13 +75,13 @@ var MyObject = {
    */
 
   invert(obj) {
+    const res = {}
     if (typeof obj === 'object') {
-      const res = {}
       for (let key in obj) {
         res[obj[key]] = key
       }
-      return res
     }
+    return res
   },
 
   /**
@@ -92,14 +93,18 @@ var MyObject = {
    */
 
   defaults(obj, defaultProps) {
-    if (typeof obj === 'object') {
+    const newObj = {}
+    if (typeof obj === 'object' && typeof defaultProps === 'object') {
+      for (let key in obj) {
+        newObj[key] = obj[key]
+      }
       for (let key in defaultProps) {
         if (!obj[key]) {
-          obj[key] = defaultProps[key]
+          newObj[key] = defaultProps[key]
         }
       }
-      return obj
     }
+    return newObj
   },
 }
 
