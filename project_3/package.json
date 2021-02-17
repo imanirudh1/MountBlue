@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/aniruddhabanerjee/aniruddha_ipl_project.git"
+    "url": "https://github.com/imanirudh1/MountBlue.git"
   },
   "author": "Aniruddha Banerjee",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/aniruddhabanerjee/aniruddha_ipl_project/issues"
+    "url": ""
   },
-  "homepage": "https://gitlab.com/aniruddhabanerjee/aniruddha_ipl_project#readme",
+  "homepage": "",
   "dependencies": {
     "csvtojson": "^2.0.10"
   }
