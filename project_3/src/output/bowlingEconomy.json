@@ -1,0 +1,27 @@
+[
+  {
+    "name": "RN ten Doeschate",
+    "ball": 7,
+    "run": 4,
+    "economy": 3.4285714285714284
+  },
+  { "name": "J Yadav", "ball": 42, "run": 29, "economy": 4.142857142857143 },
+  { "name": "V Kohli", "ball": 11, "run": 10, "economy": 5.454545454545455 },
+  { "name": "R Ashwin", "ball": 240, "run": 228, "economy": 5.7 },
+  { "name": "S Nadeem", "ball": 44, "run": 43, "economy": 5.863636363636364 },
+  {
+    "name": "MC Henriques",
+    "ball": 157,
+    "run": 158,
+    "economy": 6.038216560509554
+  },
+  { "name": "Z Khan", "ball": 155, "run": 156, "economy": 6.038709677419355 },
+  { "name": "Parvez Rasool", "ball": 30, "run": 31, "economy": 6.2 },
+  { "name": "MA Starc", "ball": 272, "run": 291, "economy": 6.419117647058823 },
+  {
+    "name": "Sandeep Sharma",
+    "ball": 311,
+    "run": 350,
+    "economy": 6.752411575562701
+  }
+]
