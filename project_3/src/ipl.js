@@ -1,20 +1,40 @@
 const ipl = {
+  /**
+   * This function iterate array element and finds no of matches played .
+   *@param {Array} arr - Array of element
+   * @returns {Object} -json object
+   */
+
   matchesPlayed(arr) {
-    let obj = {}
-    for (let i = 0; i < arr.length; i++) {
-      if (obj[arr[i].season]) {
-        obj[arr[i].season]++
+    let result = []
+
+    arr.forEach((element) => {
+      let findSeason = result.find((res) => res.season === element.season)
+
+      if (findSeason) {
+        findSeason.match++
       } else {
-        obj[arr[i].season] = 1
+        let obj = {}
+        obj.season = element.season
+        obj.match = 1
+        result.push(obj)
       }
-    }
-    return JSON.stringify(obj)
+    })
+    return JSON.stringify(result)
   },
+  /**
+   * This function iterate array element and no of matches won by the team.
+   *@param {Array} arr - Array of element
+   * @returns {Object} -json object
+   */
   matchesWon(arr) {
     let obj = {}
-    for (let index = 0; index < arr.length; index++) {
-      let season = arr[index].season
-      let winner = arr[index].winner
+
+    arr.forEach((element) => {
+      let season = element.season
+
+      let winner = element.winner
+
       if (obj[season] && obj[season][winner]) {
         obj[season][winner]++
       } else if (obj[season]) {
@@ -23,19 +43,27 @@ const ipl = {
         obj[season] = {}
         obj[season][winner] = 1
       }
-    }
+    })
     return JSON.stringify(obj)
   },
+  /**
+   * This function iterate array element and find Extra runs given by the team.
+   *@param {Array} matches - Array of element
+   *@param {Array} deliveries - Array of element
+   * @returns {Object} -json object
+   */
   extraRuns(matches, deliveries) {
     let result = []
 
     let match_id = matches
       .filter((el) => el.season === '2016')
       .map((el) => el.id)
+
     deliveries = deliveries.filter((el) => match_id.includes(el.match_id))
 
     deliveries.forEach((el) => {
       const findTeam = result.find((teams) => teams.team === el.bowling_team)
+
       if (findTeam) {
         findTeam.ExtraRuns += Number(el.extra_runs)
       } else {
@@ -48,11 +76,19 @@ const ipl = {
 
     return JSON.stringify(result)
   },
+  /**
+   * This function iterate array element and finds top 10 economical bowlers
+   *@param {Array} matches - Array of element
+   *@param {Array} deliveries - Array of element
+   * @returns {Object} -json object
+   */
   bowlingEconomy(matches, deliveries) {
     let result = []
+
     let match_id = matches
       .filter((el) => el.season === '2015')
       .map((el) => el.id)
+
     deliveries = deliveries.filter((el) => match_id.includes(el.match_id))
 
     deliveries.forEach((el) => {
