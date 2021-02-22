@@ -1,15 +1,16 @@
-fetch('http://localhost:3000/matchesplayed')
+fetch('/api/matchesPlayed')
   .then((res) => res.json())
   .then((data) => {
-    console.log(data)
     const season = Object.keys(data)
+
     const matches = Object.values(data)
-    const chart = Highcharts.chart('container', {
+
+    Highcharts.chart('container', {
       chart: {
         type: 'bar',
       },
       title: {
-        text: 'Matches Played',
+        text: 'Number of matches played per year for all the years in IPL',
       },
       xAxis: {
         categories: season,
@@ -27,18 +28,18 @@ fetch('http://localhost:3000/matchesplayed')
     })
   })
 
-fetch('http://localhost:3000/extraruns')
+fetch('/api/extraRuns')
   .then((res) => res.json())
   .then((data) => {
-    console.log(data)
     const team = data.map((el) => el.team)
     const extraRuns = data.map((el) => el.ExtraRuns)
-    const chart = Highcharts.chart('extrarun', {
+
+    Highcharts.chart('extrarun', {
       chart: {
         type: 'bar',
       },
       title: {
-        text: 'Teams Given Extra Runs',
+        text: 'Extra runs conceded per team in the year 2016',
       },
       xAxis: {
         categories: team,
@@ -55,14 +56,17 @@ fetch('http://localhost:3000/extraruns')
       ],
     })
   })
-fetch('http://localhost:3000/matcheswon')
+
+fetch('/api/matchesWon')
   .then((res) => res.json())
   .then((data) => {
-    console.log(data)
     const season = Object.keys(data)
     const match = Object.values(data)
+
     const result = []
+
     let count = 0
+
     match.forEach((el) => {
       const teams = Object.keys(el)
       teams.forEach((team) => {
@@ -82,8 +86,8 @@ fetch('http://localhost:3000/matcheswon')
       })
       count++
     })
+
     const teams = [...result]
-    console.log(teams)
 
     Highcharts.chart('matcheswon', {
       chart: {
@@ -137,5 +141,59 @@ fetch('http://localhost:3000/matcheswon')
         enabled: false,
       },
       series: teams,
+    })
+  })
+
+fetch('/api/bowlingEconomy')
+  .then((res) => res.json())
+  .then((data) => {
+    const players = data.map((el) => ({
+      name: el.name,
+      low: Number(el.economy.toFixed(2)),
+    }))
+
+    Highcharts.chart('bowlingeconomy', {
+      chart: {
+        type: 'lollipop',
+      },
+
+      accessibility: {
+        point: {
+          valueDescriptionFormat: '{index}. {xDescription}, {point.y}.',
+        },
+      },
+
+      legend: {
+        enabled: false,
+      },
+
+      subtitle: {
+        text: '2015',
+      },
+
+      title: {
+        text: 'Top 10 Economical Bowlers',
+      },
+
+      tooltip: {
+        shared: true,
+      },
+
+      xAxis: {
+        type: 'category',
+      },
+
+      yAxis: {
+        title: {
+          text: 'Economy',
+        },
+      },
+
+      series: [
+        {
+          name: 'Economy',
+          data: players,
+        },
+      ],
     })
   })
