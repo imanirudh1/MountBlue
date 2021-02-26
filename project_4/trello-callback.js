@@ -126,7 +126,11 @@ getBoard(function (board) {
     list.forEach((el) => {
       if (el.id === 'qwsa221') {
         getCards(el.id, function (card) {
+          if (card) {
           console.log(card)
+        } else {
+          console.log(`Cards Not Found for the id ${el.id}`)
+        }
         })
       }
     })
@@ -139,26 +143,19 @@ getBoard(function (board) {
   const id = board.id
   getLists(id, function (list) {
     list.forEach((el) => {
-      if (el.id === 'qwsa221') {
+      if (el.id === 'qwsa221' || el.id === 'jwkh245') {
         getCards(el.id, function (card) {
+           if (card) {
           console.log(card)
+        } else {
+          console.log(`Cards Not Found for the id ${el.id}`)
+        }
         })
       }
     })
   })
 })
-getBoard(function (board) {
-  const id = board.id
-  getLists(id, function (list) {
-    list.forEach((el) => {
-      if (el.id === 'jwkh245') {
-        getCards(el.id, function (card) {
-          console.log(card)
-        })
-      }
-    })
-  })
-})
+
 
 // Task 3 board -> lists -> cards for all lists simultaneously
 
